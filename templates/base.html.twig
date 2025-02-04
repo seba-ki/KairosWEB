@@ -13,6 +13,7 @@
         <nav class="sidebar">
             <ul>
                 <li><a href="#" data-target="home"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#" data-target="projects"><i class="fas fa-folder-open"></i> Proyectos</a></li>
                 <li><a href="#" data-target="services"><i class="fas fa-cogs"></i> Servicios</a></li>
                 <li><a href="#" data-target="about"><i class="fas fa-users"></i> Nosotros</a></li>
                 <li><a href="#" data-target="contact"><i class="fas fa-envelope"></i> Contacto</a></li>
@@ -43,6 +44,110 @@
                             <div class="left"></div>
                         </div>
                         <img src="{{ asset('img/logo.jpg') }}" alt="Logo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Proyectos -->
+            <div class="section projects">
+                <div class="projects-content">
+                    <h1 class="h1-projects">Proyectos</h1>
+                    <div class="projects-grid">
+                        <!-- Proyecto 1 -->
+                        <div class="project-card" data-project="project1">
+                            <i class="fas fa-infinity"></i>
+                            <h3>Proyecto Kairos</h3>
+                            <p class="project-description">Un sistema avanzado de gestión empresarial.</p>
+                            <div class="project-carousel">
+                                <div class="carousel-images">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 1 - Imagen 1">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 1 - Imagen 3">
+                                </div>
+                                <button class="prev">&lt;</button>
+                                <button class="next">&gt;</button>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 2 -->
+                        <div class="project-card" data-project="project2">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Sistema de Gestión</h3>
+                            <p class="project-description">Software de escritorio para la gestión de ventas.</p>
+                            <div class="project-carousel">
+                                <div class="carousel-images">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 2 - Imagen 1">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 2 - Imagen 2">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 2 - Imagen 3">
+                                </div>
+                                <button class="prev">&lt;</button>
+                                <button class="next">&gt;</button>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 3 -->
+                        <div class="project-card" data-project="project3">
+                            <i class="fas fa-mask"></i>
+                            <h3>Carnavales Hasenkamp</h3>
+                            <p class="project-description">Página Web para la compra de entradas y sillas para el carnaval.</p>
+                            <div class="project-carousel">
+                                <div class="carousel-images">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 3 - Imagen 1">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 3 - Imagen 2">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 3 - Imagen 3">
+                                </div>
+                                <button class="prev">&lt;</button>
+                                <button class="next">&gt;</button>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 4 -->
+                        <div class="project-card" data-project="project4">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Denuncia Canales Clandestinos</h3>
+                            <p class="project-description">Un sistema avanzado de gestión de denuncias.</p>
+                            <div class="project-carousel">
+                                <div class="carousel-images">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 4 - Imagen 1">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 4 - Imagen 2">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 4 - Imagen 3">
+                                </div>
+                                <button class="prev">&lt;</button>
+                                <button class="next">&gt;</button>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 5 -->
+                        <div class="project-card" data-project="project5">
+                            <i class="fas fa-industry"></i>
+                            <h3>Metalúrgica Kisser</h3>
+                            <p class="project-description">Página Web para la compra de maquinarias.</p>
+                            <div class="project-carousel">
+                                <div class="carousel-images">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 5 - Imagen 1">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 5 - Imagen 2">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 5 - Imagen 3">
+                                </div>
+                                <button class="prev">&lt;</button>
+                                <button class="next">&gt;</button>
+                            </div>
+                        </div>
+
+                        <!-- Proyecto 6 -->
+                        <div class="project-card" data-project="projec6">
+                            <i class="fas fa-user-tie"></i>
+                            <h3>PortFolio</h3>
+                            <p class="project-description">Página Web destinada al PortFolio de un estudiante.</p>
+                            <div class="project-carousel">
+                                <div class="carousel-images">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 6 - Imagen 1">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 6 - Imagen 2">
+                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 6 - Imagen 3">
+                                </div>
+                                <button class="prev">&lt;</button>
+                                <button class="next">&gt;</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,6 +319,7 @@
     </div>
 
     <script>
+        //HOME 
         document.addEventListener("DOMContentLoaded", () => {
             const frame = document.getElementById("imageFrame");
 
@@ -261,6 +367,96 @@
             });
             document.querySelector(".section.contact").classList.add("active");
         }
+
+        //PROYECTOS
+        document.addEventListener("DOMContentLoaded", () => {
+            const projectCards = document.querySelectorAll(".project-card");
+
+            let activeCard = null; // Guardar la tarjeta activa para evitar múltiples abiertas
+
+            projectCards.forEach(card => {
+                const icon = card.querySelector("i");
+                const title = card.querySelector("h3");
+                const description = card.querySelector(".project-description");
+                const projectCarousel = card.querySelector(".project-carousel");
+                const images = projectCarousel.querySelectorAll("img");
+                const prevButton = projectCarousel.querySelector(".prev");
+                const nextButton = projectCarousel.querySelector(".next");
+                let currentIndex = 0;
+
+                // Asegurar que el carrusel y los botones estén ocultos al inicio
+                projectCarousel.style.display = "none";
+
+                // Mostrar descripción solo en hover
+                card.addEventListener("mouseenter", () => {
+                    description.style.display = "block";
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    description.style.display = "none";
+                });
+
+                // Función para mostrar el carrusel
+                function showCarousel() {
+                    if (activeCard && activeCard !== card) {
+                        hideCarousel(activeCard);
+                    }
+                    activeCard = card;
+
+                    icon.style.display = "none";
+                    title.style.display = "none";
+                    description.style.display = "none";
+                    projectCarousel.style.display = "flex";
+                    projectCarousel.classList.add("active"); // Agregar clase activa
+
+                    prevButton.style.display = "block"; // Mostrar botón anterior
+                    nextButton.style.display = "block"; // Mostrar botón siguiente
+
+                    images[currentIndex].classList.add("active");
+                }
+
+                function hideCarousel(card) {
+                    card.querySelector(".project-carousel").style.display = "none";
+                    card.querySelector(".project-carousel").classList.remove("active"); // Quitar clase activa
+
+                    card.querySelector("i").style.display = "block";
+                    card.querySelector("h3").style.display = "block";
+                    card.querySelector(".project-description").style.display = "none";
+
+                    card.querySelectorAll(".carousel-images img").forEach(img => img.classList.remove("active"));
+
+                    // Ocultar botones cuando el carrusel se cierra
+                    card.querySelector(".prev").style.display = "none";
+                    card.querySelector(".next").style.display = "none";
+                }
+
+                // Manejar clic en la tarjeta
+                card.addEventListener("click", () => {
+                    if (projectCarousel.style.display === "none") {
+                        showCarousel();
+                    } else {
+                        hideCarousel(card);
+                        activeCard = null;
+                    }
+                });
+
+                // Botón siguiente
+                nextButton.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    images[currentIndex].classList.remove("active");
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add("active");
+                });
+
+                // Botón anterior
+                prevButton.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    images[currentIndex].classList.remove("active");
+                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                    images[currentIndex].classList.add("active");
+                });
+            });
+        });
     </script>
 </body>
 </html>

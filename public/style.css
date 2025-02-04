@@ -33,7 +33,7 @@ body {
     margin: 15px 0;
 }
 
-.sidebar ul li:not(:last-child)::after {
+.sidebar ul li:nth-last-child(n+2)::after {
     content: "";
     position: absolute;
     left: 0;
@@ -41,7 +41,7 @@ body {
     width: 100%;
     height: 1px;
     background-color: #444;
-    opacity: calc(50%);
+    opacity: 50%;
 }
 
 .sidebar ul li a {
@@ -286,6 +286,140 @@ body {
 
 .animate-frame .left {
     animation: drawBorderLeft 1s linear 1.5s infinite; /* Recorre el borde izquierdo */
+}
+
+/* Estilos para la sección de Proyectos */
+.h1-projects {
+    text-align: left;
+    color: #00ff88;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Estilo base de las tarjetas (tamaño fijo) */
+.project-card {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 30px;
+    width: 300px;  /* Mantener el tamaño fijo */
+    height: 200px; /* Mantener el tamaño fijo */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover: No agrandar, solo cambiar color */
+.project-card:hover {
+    background-color: #00ff88;
+    color: #1a1a1a;
+}
+
+.project-card:hover i {
+    color: #1a1a1a;
+}
+
+/* Íconos */
+.project-card i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #00ff88;
+}
+
+/* Mostrar la descripción solo en hover */
+.project-description {
+    display: none;
+    font-size: 16px;
+    text-align: center;
+}
+
+.project-card:hover .project-description {
+    display: block;
+}
+
+/* Estilos del carrusel */
+.project-carousel {
+    display: none; /* Ocultar el carrusel al inicio */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Imágenes del carrusel */
+.carousel-images {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-images img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: none;
+}
+
+.carousel-images img.active {
+    display: block;
+}
+
+/* Posicionar los botones correctamente */
+/* Posicionar los botones correctamente */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7); /* Hacerlos más visibles */
+    color: black;
+    border: none;
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 10;
+    border-radius: 50%; /* Botones redondeados */
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto hover para los botones */
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Posición izquierda y derecha */
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+/* Asegurar que los botones sean visibles cuando el carrusel está activo */
+.project-carousel.active .prev,
+.project-carousel.active .next {
+    display: block !important;
 }
 
 /* Estilos para Servicios */
