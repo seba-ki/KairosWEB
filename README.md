@@ -4,7 +4,6 @@ Bienvenido a **KairosWEB**, la plataforma web de la empresa de software **Kairos
 
 ## 🚀 Tecnologías utilizadas
 - **PHP 8.3**
-- **HTML5**
 - **CSS3**
 - **JavaScript**
 - **Symfony 6.4**
