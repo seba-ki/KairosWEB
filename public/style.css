@@ -1,0 +1,629 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 200px;
+    background: #222;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    position: relative;
+    margin: 15px 0;
+}
+
+.sidebar ul li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 1px;
+    background-color: #444;
+    opacity: calc(50%);
+}
+
+.sidebar ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+    width: 100%;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+    color: #00ff88;
+}
+
+/* Contenedor principal */
+.container {
+    flex: 1;
+    display: flex;
+    height: 100vh;
+}
+
+/* Contenedor de contenido */
+.content-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: calc(100% - 200px);
+}
+
+/* Estilos de las secciones */
+.section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background: #2a2a2a;
+    border: 2px solid #333;
+    box-sizing: border-box;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+.section.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(0);
+}
+
+/* Estilos específicos para cada sección */
+.home-content, .services-content, .about-content, .contact-content {
+    padding: 20px;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+}
+
+.section.home {
+    display: flex; /* Usa flexbox para el diseño */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Altura completa de la ventana */
+    padding: 20px; /* Espaciado interno */
+    background-color: #2a2a2a; /* Fondo suave */
+}
+
+.home-content {
+    display: flex; /* Muestra el contenido en dos columnas */
+    justify-content: space-between; /* Espacio entre el texto y la imagen */
+    width: 100%; /* Ancho completo */
+    max-width: 1200px; /* Ancho máximo */
+}
+
+.text-container {
+    position: relative;
+    left: 50px;
+    top: 50px; 
+    max-width: 50%; /* Ancho máximo del contenedor de texto */
+}
+
+.h1-home, .h2-home {
+    text-align: left;
+    margin: 0; /* Elimina márgenes */
+    color: white; /* Color del texto */
+}
+
+.h1-home {
+    font-size: 1.5em; /* Tamaño del título */
+}
+
+.h2-home {
+    font-size: 1.2em; /* Tamaño del subtítulo */
+    margin: 10px 0; /* Margen entre h2 y p */
+}
+
+.highlight {
+    color: #00ff88; /* Color verde */
+}
+
+.p-home {
+    text-align: left;
+    color: white; /* Color de la descripción */
+    margin: 15px 0; /* Margen para la descripción */
+    font-size: 0.7em; /* Tamaño de la descripción */
+}
+
+.button-container {
+    text-align: left;
+    margin-top: 20px; /* Margen superior para botones */
+}
+
+.btn-green {
+    background-color: #00ff88; /* Color del botón */
+    color: black; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 5px 10px; /* Espaciado interno */
+    font-size: 0.7em; /* Tamaño del texto del botón */
+    margin-right: 10px; /* Espacio entre botones */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición de color */
+}
+
+.btn-green:hover {
+    background-color: #009e6c; /* Color al pasar el mouse */
+}
+
+.image-container {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-frame {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 330px;
+    height: 330px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.image-frame::before,
+.image-frame::after,
+.image-frame .bottom,
+.image-frame .left {
+    content: "";
+    position: absolute;
+    background: #00ff88;
+    opacity: 0; /* Inicialmente invisible */
+}
+
+/* Definir los 4 lados del marco */
+.image-frame::before {
+    width: 0; /* Comienza invisible */
+    height: 5px;
+    top: 0;
+    left: 0;
+}
+
+.image-frame::after {
+    width: 5px;
+    height: 0; /* Comienza invisible */
+    top: 0;
+    right: 0;
+}
+
+.image-frame .bottom {
+    width: 0;
+    height: 5px;
+    bottom: 0;
+    right: 0;
+}
+
+.image-frame .left {
+    width: 5px;
+    height: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* Animaciones para cada lado */
+@keyframes drawBorderTop {
+    0% { width: 0; opacity: 1; }
+    50% { width: 100%; opacity: 1; }
+    100% { width: 100%; opacity: 0; } /* Desaparece al final */
+}
+
+@keyframes drawBorderRight {
+    0% { height: 0; opacity: 1; }
+    50% { height: 100%; opacity: 1; }
+    100% { height: 100%; opacity: 0; } /* Desaparece al final */
+}
+
+@keyframes drawBorderBottom {
+    0% { width: 0; opacity: 1; }
+    50% { width: 100%; opacity: 1; }
+    100% { width: 100%; opacity: 0; } /* Desaparece al final */
+}
+
+@keyframes drawBorderLeft {
+    0% { height: 0; opacity: 1; }
+    50% { height: 100%; opacity: 1; }
+    100% { height: 100%; opacity: 0; } /* Desaparece al final */
+}
+
+/* Aplicamos las animaciones en orden */
+.animate-frame::before {
+    animation: drawBorderTop 1s linear infinite; /* Recorre el borde superior */
+}
+
+.animate-frame::after {
+    animation: drawBorderRight 1s linear 0.5s infinite; /* Recorre el borde derecho */
+}
+
+.animate-frame .bottom {
+    animation: drawBorderBottom 1s linear 1s infinite; /* Recorre el borde inferior */
+}
+
+.animate-frame .left {
+    animation: drawBorderLeft 1s linear 1.5s infinite; /* Recorre el borde izquierdo */
+}
+
+/* Estilos para Servicios */
+.h1-servicios {
+    text-align: left;
+    color: #00ff88;
+    margin-bottom: 10px; /* Reducido para estar más cerca de los servicios */
+    font-size: 24px; /* Cambia el tamaño de fuente si es necesario */
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Cambiado a 3 columnas */
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 30px; /* Aumentar el padding */
+    height: 200px; /* Aumentar la altura */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar sombra para más profundidad */
+}
+
+.service-card h3 {
+    font-size: 24px; /* Aumentar el tamaño de la fuente del título */
+}
+
+.service-card p {
+    position: relative;
+    bottom: 15px; /* Ajustar la posición del texto */
+    font-size: 18px;
+}
+
+.service-card i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #00ff88;
+}
+
+.service-card:hover {
+    background-color: #00ff88;
+    color: #1a1a1a;
+}
+
+.service-card:hover i {
+    color: #1a1a1a; /* Cambia el color del icono al hacer hover en la carta */
+}
+
+/* Estilos para la sección de Nosotros */
+.about-content {
+    max-height: 600px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.about-subtitle {
+    font-size: 30px;
+    color: #00ff88;
+    margin-bottom: 2px;
+}
+
+.about-title {
+    font-size: 26px;
+    margin-bottom: 2px;
+}
+
+.about-title .white {
+    color: #e0e0e0;
+}
+
+.about-title .green {
+    color: #00ff88;
+}
+
+.about-description {
+    font-size: 16px;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+}
+
+/* Contenedor principal */
+.about-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1000px;
+    width: 100%;
+    padding-top: 5px;
+    gap: 20px; /* Espaciado entre secciones */
+}
+
+/* Sección de datos personales */
+.about-data {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    max-width: 50%;
+}
+
+/* Columnas de datos */
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+}
+
+.data-section {
+    text-align: left;
+    padding: 5px;
+}
+
+.data-section h5 {
+    font-size: 18px;
+    color: #00ff88;
+    margin-bottom: 2px;
+}
+
+.data-section p {
+    font-size: 16px;
+    color: #e0e0e0;
+}
+
+/* Sección de habilidades */
+.skills-section {
+    flex: 1;
+    max-width: 50%;
+}
+
+.skills-section h5 {
+    font-size: 18px;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skills-list li {
+    padding-top: 5px;
+    margin: 3px 0;
+    font-size: 16px;
+}
+
+/* Estilos de la barra de progreso */
+.progress-bar {
+    background-color: #444;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 3px 0;
+    width: 100%;
+    height: 6px;
+}
+
+.progress-bar div {
+    background-color: #00ff88;
+    height: 6px;
+    border-radius: 3px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .about-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .about-data, .skills-section {
+        max-width: 100%;
+    }
+}
+
+/* Estilo general del contenedor de contacto */
+.section.contact {
+    display: flex;
+    flex-direction: column; /* Asegúrate de que los elementos estén en columna */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+
+.section.contact h3 {
+    text-align: left; /* Alinea el texto a la izquierda */
+    color: #00ff88;
+    margin: 0; /* Elimina márgenes para un mejor ajuste */
+    padding-bottom: 10px; /* Espacio opcional debajo del título */
+    position: relative; /* Posición relativa para el ajuste */
+    left: 0; /* Alineado a la izquierda */
+    width: auto; /* Permite que el ancho se ajuste automáticamente */
+    max-width: 100%; /* No exceder el 100% del contenedor */
+}
+
+
+.contact-content {
+    display: flex; /* Muestra la parte izquierda y derecha en una fila */
+    position: relative;
+    top: 20px;
+}
+
+/* Parte izquierda (Contacto) */
+.contact-info {
+    flex: 0 0 20%;
+    padding: 20px;
+    color: #e0e0e0;
+    position: relative;
+    bottom: 40px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column; /* Cambiado a columna para centrar elementos */
+    align-items: center; /* Centrado horizontal */
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.info-item i {
+    position: relative;
+    top: 20px;
+    font-size: 24px;
+    color: #00ff88; /* Color verde */
+}
+
+.info-item h4 {
+    font-size: 16px;
+    margin-bottom: 2px;
+    text-align: center; /* Centrado de texto */
+    color: #00ff88; /* Color verde */
+}
+
+.info-item p {
+    font-size: 14px;
+    color: #ccc;
+    text-align: center; /* Centrado de texto */
+}
+
+/* Parte derecha (Formulario y redes sociales) */
+.contact-form-wrapper {
+    flex: 0 0 80%;
+}
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.contact-header h4 {
+    font-size: 18px;
+    color: white;
+}
+
+/* Redes sociales */
+.social-links {
+    background: #333;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+.social-links a {
+    color: #00ff88;
+    font-size: 18px;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+/* Formulario de contacto */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%; /* Asegurar que ocupen el mismo ancho */
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #222;
+    color: white;
+    box-sizing: border-box; /* Asegurar que el padding no afecte el ancho total */
+}
+
+.contact-form button {
+    background: #00ff88;
+    color: #222;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.contact-form button:hover {
+    background: #00cc66;
+}
+
+/* Ajuste del textarea para que tenga el mismo ancho */
+.contact-form textarea {
+    resize: none; /* Para evitar el redimensionamiento manual */
+    width: 100%; /* Asegurado que tenga el mismo ancho */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .contact-info, .contact-form-wrapper {
+        flex: 100%;
+    }
+}
+
+/* Estilo para la sección de contacto */
+.contact-content {
+    display: flex;
+    gap: 20px;
+}
+

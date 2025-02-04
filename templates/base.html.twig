@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Empresa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra lateral -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" data-target="home"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#" data-target="services"><i class="fas fa-cogs"></i> Servicios</a></li>
+                <li><a href="#" data-target="about"><i class="fas fa-users"></i> Nosotros</a></li>
+                <li><a href="#" data-target="contact"><i class="fas fa-envelope"></i> Contacto</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenedor de contenido -->
+        <div class="content-container">
+            <!-- Sección de Inicio -->
+            <div class="section home active">
+                <div class="home-content">
+                    <div class="text-container">
+                        <h1 class="h1-home">
+                            Hola!, Somos <span class="highlight">Kairos</span>
+                        </h1>
+                        <h2 class="h2-home">
+                            Una <span class="highlight">empresa</span> de <span class="highlight">Software</span>
+                        </h2>
+                        <p class="p-home">Somos una empresa especializada en desarrollo de software, diseño grafico y desarrollo UX/UI.</p>
+                        <div class="button-container">
+                            <button class="btn-green" onclick="showAbout()">Sobre Nosotros</button>
+                            <button class="btn-green" onclick="showContact()">Contáctanos</button>
+                        </div>
+                    </div>
+                    <div class="image-container" style="position: relative; right: 50px">
+                        <div class="image-frame" id="imageFrame">
+                            <div class="bottom"></div>
+                            <div class="left"></div>
+                        </div>
+                        <img src="{{ asset('img/logo.jpg') }}" alt="Logo">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Servicios -->
+            <div class="section services">
+                <div class="services-content">
+                    <h1 class="h1-servicios">Servicios</h1>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <i class="fas fa-code"></i>
+                            <h3>Desarrollo Web</h3>
+                            <p>Creación de sitios web modernos y responsivos.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Desarrollo Móvil</h3>
+                            <p>Aplicaciones móviles para iOS y Android.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-paint-brush"></i>
+                            <h3>Diseño UX/UI</h3>
+                            <p>Diseño de interfaces intuitivas y atractivas.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-database"></i>
+                            <h3>Bases de Datos</h3>
+                            <p>Gestión y optimización de bases de datos.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-paint-brush"></i> <!-- Cambiado a un icono diferente si es necesario -->
+                            <h3>Diseño Gráfico</h3>
+                            <p>Diseño de elementos visuales impactantes.</p>
+                        </div>
+                        <div class="service-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Análisis de Datos</h3>
+                            <p>Análisis y visualización de datos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Nosotros -->
+            <div class="section about">
+                <div class="about-content">
+                    <!-- Subtítulo al lado izquierdo -->
+                    <h3 class="about-subtitle">¿Quiénes Somos?</h3>
+
+                    <!-- Título con texto en blanco y verde -->
+                    <h4 class="about-title">
+                        <span class="white">Somos</span>
+                        <span class="green">Desarrolladores</span>
+                        <span class="white">y llegamos para</span>
+                        <span class="green">ayudarte</span>
+                    </h4>
+
+                    <!-- Párrafo sobre quiénes somos -->
+                    <p class="about-description">
+                        Somos un equipo de profesionales apasionados por la tecnología, con más de 2 años de experiencia en el desarrollo de software. Nos especializamos en crear soluciones digitales innovadoras y eficientes para nuestros clientes.
+                    </p>
+
+                    <!-- Contenedor principal -->
+                    <div class="about-wrapper">
+                        <!-- Datos personales en dos columnas -->
+                        <div class="about-data">
+                            <div class="column">
+                                <div class="data-section">
+                                    <h5>Años de experiencia</h5>
+                                    <p>2 años</p>
+                                </div>
+                                <div class="data-section">
+                                    <h5>Teléfono</h5>
+                                    <p>+54 343 508 6453</p>
+                                </div>
+                                <div class="data-section">
+                                    <h5>Disponibilidad</h5>
+                                    <p>Full-time</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="data-section">
+                                    <h5>Edad</h5>
+                                    <p>22/25 años</p>
+                                </div>
+                                <div class="data-section">
+                                    <h5>Lenguajes para la web</h5>
+                                    <p>HTML, CSS, JavaScript, PHP</p>
+                                </div>
+                                <div class="data-section">
+                                    <h5>Localidad</h5>
+                                    <p>Santa Fe, Santa Fe, Argentina</p>
+                                    <p>Hasenkamp, Entre Ríos, Argentina</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección de habilidades -->
+                        <div class="skills-section">
+                            <h5>Lenguajes de Programación</h5>
+                            <ul class="skills-list">
+                                <li>C# <div class="progress-bar"><div style="width: 80%;"></div></div></li>
+                                <li>Java <div class="progress-bar"><div style="width: 70%;"></div></div></li>
+                                <li>HTML <div class="progress-bar"><div style="width: 90%;"></div></div></li>
+                                <li>CSS <div class="progress-bar"><div style="width: 85%;"></div></div></li>
+                                <li>JavaScript <div class="progress-bar"><div style="width: 75%;"></div></div></li>
+                                <li>PHP <div class="progress-bar"><div style="width: 60%;"></div></div></li>
+                                <li>MySQL <div class="progress-bar"><div style="width: 70%;"></div></div></li>
+                                <li>Node.js <div class="progress-bar"><div style="width: 65%;"></div></div></li>
+                                <li>Symfony <div class="progress-bar"><div style="width: 50%;"></div></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Contacto -->
+            <div class="section contact" style="padding-right: 90px; position: relative; top: 10px" >
+                <h3>Contacto</h3> <!-- Título en la parte superior izquierda -->
+                <div class="contact-content">
+                    <!-- Parte Izquierda (30%) -->
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>+54 343 508 6453</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Localidad</h4>
+                                <p>Santa Fe, Santa Fe, Argentina</p>
+                                <p>Hasenkamp, Entre Ríos, Argentina</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Correo Electrónico</h4>
+                                <p>kairosdev.oficial@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte Derecha (70%) -->
+                    <div class="contact-form-wrapper">
+                        <div class="contact-header">
+                            <h4>Mandanos un mensaje</h4>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                            </div>
+                        </div>
+                        <form class="contact-form">
+                            <div class="form-row">
+                                <input type="text" placeholder="Nombre" required>
+                                <input type="email" placeholder="Correo" required>
+                            </div>
+                            <textarea placeholder="Mensaje" rows="5" required></textarea>
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const frame = document.getElementById("imageFrame");
+
+            if (frame) {
+                frame.classList.add("animate-frame");
+            } else {
+                console.error("No se encontró el elemento #imageFrame");
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll(".section");
+            const links = document.querySelectorAll(".sidebar a");
+
+            links.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    const target = e.target.getAttribute("data-target");
+
+                    // Oculta todas las secciones
+                    sections.forEach(section => {
+                        section.classList.remove("active");
+                    });
+
+                    // Muestra la sección seleccionada
+                    const selectedSection = document.querySelector(`.section.${target}`);
+                    selectedSection.classList.add("active");
+                });
+            });
+        });
+
+        function showAbout() {
+            const sections = document.querySelectorAll(".section");
+            sections.forEach(section => {
+                section.classList.remove("active");
+            });
+            document.querySelector(".section.about").classList.add("active");
+        }
+
+        function showContact() {
+            const sections = document.querySelectorAll(".section");
+            sections.forEach(section => {
+                section.classList.remove("active");
+            });
+            document.querySelector(".section.contact").classList.add("active");
+        }
+    </script>
+</body>
+</html>
