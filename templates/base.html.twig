@@ -16,7 +16,7 @@
                 <li><a href="#" data-target="projects"><i class="fas fa-folder-open"></i> Proyectos</a></li>
                 <li><a href="#" data-target="services"><i class="fas fa-cogs"></i> Servicios</a></li>
                 <li><a href="#" data-target="about"><i class="fas fa-users"></i> Nosotros</a></li>
-                <li><a href="#" data-target="contact"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="#" style="padding-left: 2px" data-target="contact"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
         </nav>
 
@@ -60,9 +60,11 @@
                             <p class="project-description">Un sistema avanzado de gestión empresarial.</p>
                             <div class="project-carousel">
                                 <div class="carousel-images">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 1 - Imagen 1">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 1 - Imagen 2">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 1 - Imagen 3">
+                                    <img style="width: auto; height: 265px; position: relative; right: 20px" src="{{ asset('img/Kairos/kairos1.jpg') }}" alt="Proyecto 1 - Imagen 1">
+                                    <img style="width: auto; height: 265px; position: relative; right: 30px" src="{{ asset('img/Kairos/kairos2.jpg') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/Kairos/kairos3.jpg') }}" alt="Proyecto 1 - Imagen 3">
+                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/Kairos/kairos4.jpg') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/Kairos/kairos5.png') }}" alt="Proyecto 1 - Imagen 3">
                                 </div>
                                 <button class="prev">&lt;</button>
                                 <button class="next">&gt;</button>
@@ -235,12 +237,11 @@
                                 </div>
                                 <div class="data-section">
                                     <h5>Lenguajes para la web</h5>
-                                    <p>HTML, CSS, JavaScript, PHP</p>
+                                    <p>Symfony, PHP, CSS y JavaScript</p>
                                 </div>
-                                <div class="data-section">
+                                <div class="data-section" style="position: relative; bottom: 18px">
                                     <h5>Localidad</h5>
-                                    <p>Santa Fe, Santa Fe, Argentina</p>
-                                    <p>Hasenkamp, Entre Ríos, Argentina</p>
+                                    <p>Santa Fe, Santa Fe, Argentina Hasenkamp, Entre Ríos, Argentina</p>
                                 </div>
                             </div>
                         </div>
@@ -249,15 +250,15 @@
                         <div class="skills-section">
                             <h5>Lenguajes de Programación</h5>
                             <ul class="skills-list">
-                                <li>C# <div class="progress-bar"><div style="width: 80%;"></div></div></li>
-                                <li>Java <div class="progress-bar"><div style="width: 70%;"></div></div></li>
-                                <li>HTML <div class="progress-bar"><div style="width: 90%;"></div></div></li>
-                                <li>CSS <div class="progress-bar"><div style="width: 85%;"></div></div></li>
-                                <li>JavaScript <div class="progress-bar"><div style="width: 75%;"></div></div></li>
-                                <li>PHP <div class="progress-bar"><div style="width: 60%;"></div></div></li>
-                                <li>MySQL <div class="progress-bar"><div style="width: 70%;"></div></div></li>
-                                <li>Node.js <div class="progress-bar"><div style="width: 65%;"></div></div></li>
-                                <li>Symfony <div class="progress-bar"><div style="width: 50%;"></div></div></li>
+                                <li>C# <div class="progress-bar"><div data-width="80%"></div></div></li>
+                                <li>Java <div class="progress-bar"><div data-width="70%"></div></div></li>
+                                <li>HTML <div class="progress-bar"><div data-width="90%"></div></div></li>
+                                <li>CSS <div class="progress-bar"><div data-width="85%"></div></div></li>
+                                <li>JavaScript <div class="progress-bar"><div data-width="75%"></div></div></li>
+                                <li>PHP <div class="progress-bar"><div data-width="60%"></div></div></li>
+                                <li>MySQL <div class="progress-bar"><div data-width="70%"></div></div></li>
+                                <li>Node.js <div class="progress-bar"><div data-width="65%"></div></div></li>
+                                <li>Symfony <div class="progress-bar"><div data-width="50%"></div></div></li>
                             </ul>
                         </div>
                     </div>
@@ -456,6 +457,27 @@
                     images[currentIndex].classList.add("active");
                 });
             });
+        });
+
+        //Barra progresiva
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressBars = document.querySelectorAll(".progress-bar div");
+
+            // Observador para detectar cuando el contenedor de las barras es visible
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Al entrar en pantalla, se activa la animación
+                        progressBars.forEach(bar => {
+                            bar.style.width = bar.getAttribute("data-width");
+                        });
+                        observer.disconnect(); // Detiene la observación después de la primera vez
+                    }
+                });
+            }, { threshold: 0.5 }); // Se activará cuando el 50% del elemento esté visible
+
+            // Aplicar el observer al contenedor de la lista de habilidades
+            observer.observe(document.querySelector(".skills-list"));
         });
     </script>
 </body>
