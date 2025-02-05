@@ -55,7 +55,7 @@
                     <div class="projects-grid">
                         <!-- Proyecto 1 -->
                         <div class="project-card" data-project="project1">
-                            <i class="fas fa-infinity"></i>
+                            <i class="fas fa-briefcase"></i>
                             <h3>Proyecto Kairos</h3>
                             <p class="project-description">Un sistema avanzado de gestión empresarial.</p>
                             <div class="project-carousel">
@@ -73,7 +73,7 @@
 
                         <!-- Proyecto 2 -->
                         <div class="project-card" data-project="project2">
-                            <i class="fas fa-cogs"></i>
+                            <i class="fas fa-chart-pie"></i>
                             <h3>Sistema de Gestión</h3>
                             <p class="project-description">Software de escritorio para la gestión de ventas.</p>
                             <div class="project-carousel">
@@ -250,15 +250,15 @@
                         <div class="skills-section">
                             <h5>Lenguajes de Programación</h5>
                             <ul class="skills-list">
-                                <li>C# <div class="progress-bar"><div data-width="80%"></div></div></li>
-                                <li>Java <div class="progress-bar"><div data-width="70%"></div></div></li>
-                                <li>HTML <div class="progress-bar"><div data-width="90%"></div></div></li>
-                                <li>CSS <div class="progress-bar"><div data-width="85%"></div></div></li>
-                                <li>JavaScript <div class="progress-bar"><div data-width="75%"></div></div></li>
-                                <li>PHP <div class="progress-bar"><div data-width="60%"></div></div></li>
-                                <li>MySQL <div class="progress-bar"><div data-width="70%"></div></div></li>
-                                <li>Node.js <div class="progress-bar"><div data-width="65%"></div></div></li>
-                                <li>Symfony <div class="progress-bar"><div data-width="50%"></div></div></li>
+                                <li><i class="fab fa-microsoft"></i> C# <div class="progress-bar"><div data-width="80%"></div></div></li>
+                                <li><i class="fab fa-java"></i> Java <div class="progress-bar"><div data-width="70%"></div></div></li>
+                                <li><i class="fab fa-html5"></i> HTML <div class="progress-bar"><div data-width="90%"></div></div></li>
+                                <li><i class="fab fa-css3-alt"></i> CSS <div class="progress-bar"><div data-width="85%"></div></div></li>
+                                <li><i class="fab fa-js"></i> JavaScript <div class="progress-bar"><div data-width="75%"></div></div></li>
+                                <li><i class="fab fa-php"></i> PHP <div class="progress-bar"><div data-width="60%"></div></div></li>
+                                <li><i class="fas fa-database"></i> MySQL <div class="progress-bar"><div data-width="70%"></div></div></li>
+                                <li><i class="fab fa-node-js"></i> Node.js <div class="progress-bar"><div data-width="65%"></div></div></li>
+                                <li><i class="fab fa-symfony"></i> Symfony <div class="progress-bar"><div data-width="50%"></div></div></li>
                             </ul>
                         </div>
                     </div>
@@ -390,11 +390,25 @@
 
                 // Mostrar descripción solo en hover
                 card.addEventListener("mouseenter", () => {
-                    description.style.display = "block";
+                    if (projectCarousel.classList.contains("active")) return; // No ejecutar si el carrusel est� abierto
+
+                    description.style.opacity = "1";
+                    description.style.visibility = "visible";
+
+                    // Subir un poco el icono y el t�tulo
+                    icon.style.transform = "translateY(-15px)";
+                    title.style.transform = "translateY(-15px)";
                 });
 
                 card.addEventListener("mouseleave", () => {
-                    description.style.display = "none";
+                    if (projectCarousel.classList.contains("active")) return; // No ejecutar si el carrusel est� abierto
+
+                    description.style.opacity = "0";
+                    description.style.visibility = "hidden";
+
+                    // Restaurar icono y t�tulo a su posici�n original
+                    icon.style.transform = "translateY(0)";
+                    title.style.transform = "translateY(0)";
                 });
 
                 // Función para mostrar el carrusel
@@ -404,29 +418,50 @@
                     }
                     activeCard = card;
 
+                    // Guardar la posición original del icono, título y descripción antes de ocultarlos
+                    icon.dataset.originalTransform = icon.style.transform || "translateY(0)";
+                    title.dataset.originalTransform = title.style.transform || "translateY(0)";
+                    description.dataset.originalTransform = description.style.transform || "translateY(0)";
+
+                    // Ocultar icono, título y descripción
                     icon.style.display = "none";
                     title.style.display = "none";
-                    description.style.display = "none";
-                    projectCarousel.style.display = "flex";
-                    projectCarousel.classList.add("active"); // Agregar clase activa
+                    description.style.opacity = "0";
+                    description.style.visibility = "hidden";
 
-                    prevButton.style.display = "block"; // Mostrar botón anterior
-                    nextButton.style.display = "block"; // Mostrar botón siguiente
+                    // Mostrar carrusel
+                    projectCarousel.style.display = "flex";
+                    projectCarousel.classList.add("active");
+
+                    prevButton.style.display = "block";
+                    nextButton.style.display = "block";
 
                     images[currentIndex].classList.add("active");
                 }
 
                 function hideCarousel(card) {
                     card.querySelector(".project-carousel").style.display = "none";
-                    card.querySelector(".project-carousel").classList.remove("active"); // Quitar clase activa
+                    card.querySelector(".project-carousel").classList.remove("active");
 
-                    card.querySelector("i").style.display = "block";
-                    card.querySelector("h3").style.display = "block";
-                    card.querySelector(".project-description").style.display = "none";
+                    const cardIcon = card.querySelector("i");
+                    const cardTitle = card.querySelector("h3");
+                    const cardDescription = card.querySelector(".project-description");
+
+                    // Restaurar la visibilidad del icono y el título
+                    cardIcon.style.display = "block";
+                    cardTitle.style.display = "block";
+
+                    // Restaurar la posición original del icono, título y descripción
+                    cardIcon.style.transform = cardIcon.dataset.originalTransform || "translateY(0)";
+                    cardTitle.style.transform = cardTitle.dataset.originalTransform || "translateY(0)";
+                    cardDescription.style.transform = cardDescription.dataset.originalTransform || "translateY(0)";
+
+                    // Ocultar la descripción nuevamente
+                    cardDescription.style.opacity = "1";
+                    cardDescription.style.visibility = "visible";
 
                     card.querySelectorAll(".carousel-images img").forEach(img => img.classList.remove("active"));
 
-                    // Ocultar botones cuando el carrusel se cierra
                     card.querySelector(".prev").style.display = "none";
                     card.querySelector(".next").style.display = "none";
                 }

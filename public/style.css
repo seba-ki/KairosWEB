@@ -310,15 +310,52 @@ body {
     width: 300px;  /* Mantener el tamaño fijo */
     height: 200px; /* Mantener el tamaño fijo */
     border-radius: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, all 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     position: relative;
     overflow: hidden;
+}
+
+/* Íconos */
+.project-card i {
+    position: relative;
+    top: 30px;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #00ff88;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-card h3 {
+    position: relative;
+    top: 30px;
+    font-size: 20px;
+    margin: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Mostrar la descripción solo en hover */
+.project-description {
+    opacity: 0; /* Oculta la descripción */
+    visibility: hidden;
+    font-size: 16px;
+    text-align: center;
+    max-width: 80%;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Cuando el usuario pasa el mouse, mostrar la descripción */
+.project-card:hover .project-description {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 /* Hover: No agrandar, solo cambiar color */
@@ -327,27 +364,12 @@ body {
     color: #1a1a1a;
 }
 
-.project-card:hover i {
+.project-card:hover i,
+.project-card:hover h3 {
     color: #1a1a1a;
+    transform: translateY(-15px);
 }
 
-/* Íconos */
-.project-card i {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #00ff88;
-}
-
-/* Mostrar la descripción solo en hover */
-.project-description {
-    display: none;
-    font-size: 16px;
-    text-align: center;
-}
-
-.project-card:hover .project-description {
-    display: block;
-}
 
 /* Estilos del carrusel */
 .project-carousel {
