@@ -12,6 +12,8 @@
         "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.2.*",
+        "symfony/google-mailer": "7.2.*",
+        "symfony/mailer": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/twig-bundle": "7.2.*",
         "symfony/yaml": "7.2.*",

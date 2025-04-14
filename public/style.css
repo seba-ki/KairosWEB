@@ -540,6 +540,9 @@ body {
     width: 100%;
     padding-top: 5px;
     gap: 20px; /* Espaciado entre secciones */
+
+    position: relative;
+    bottom: 30px
 }
 
 /* Sección de datos personales */
@@ -618,17 +621,6 @@ body {
     padding-top: 5px;
     margin: 3px 0;
     font-size: 16px;
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .about-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-    .about-data, .skills-section {
-        max-width: 100%;
-    }
 }
 
 /* Estilo general del contenedor de contacto */
@@ -772,20 +764,237 @@ body {
     width: 100%; /* Asegurado que tenga el mismo ancho */
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .contact-content {
-        flex-direction: column;
-    }
-    
-    .contact-info, .contact-form-wrapper {
-        flex: 100%;
-    }
-}
-
 /* Estilo para la sección de contacto */
 .contact-content {
     display: flex;
     gap: 20px;
 }
+
+@media (max-width: 768px) {
+    html, body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto !important; /* FORZAR scroll en móviles */
+        -webkit-overflow-scrolling: touch; /* Suavizar scroll en iOS */
+    }
+
+    .content-container {
+        height: auto !important;
+    }
+
+    /* 🔹 CENTRAR TODAS LAS SECCIONES */
+    .section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centrar verticalmente */
+        align-items: center; /* Centrar horizontalmente */
+        text-align: center;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    /* 🔹 NAVBAR: SOLO ICONOS, BARRA DIVISORIA VERTICAL */
+    .sidebar {
+        width: 100%;
+        height: 60px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .sidebar ul li {
+        margin: 0;
+        position: relative;
+    }
+
+    .sidebar ul li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .sidebar ul li a i {
+        position: relative;
+        left: 5px;
+        font-size: 24px; /* Ajustar tamaño del icono */
+    }
+
+    .sidebar ul li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        background-color: #444;
+        opacity: 0%;
+        right: 0;
+    }
+
+    /* 🔹 SECCIÓN HOME */
+    .home-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        bottom: 20px;
+    }
+
+    .p-home{
+        position: relative;
+        left: 3px;
+        text-align: center;
+    }
+
+    .text-container {
+        position: static; /* Eliminar ajustes previos */
+        max-width: 100%;
+    }
+
+    .h1-home, .h2-home {
+        text-align: center;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* 🔹 IMAGEN Y MARCO CENTRADOS */
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        height: 200px;
+        margin-top: 40px;
+        position: static;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        left: 43px;
+    }
+
+    .image-frame {
+        width: 225px;
+        height: 225px;
+        position: absolute;
+        left: 30px;
+    }
+
+    /* 🔹 SECCIÓN PROYECTOS */
+    .projects-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* 🔹 SECCIÓN SERVICIOS */
+    .services-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* 🔹 SECCIÓN ABOUT */
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .about-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .column {
+        width: 100%;
+    }
+
+    .skills-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .skills-list {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* 🔹 SECCIÓN CONTACTO */
+    .contact-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
+
+    .contact-form-wrapper {
+        width: 100%;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+
 

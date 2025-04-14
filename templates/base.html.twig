@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Empresa</title>
+    <title>SoMoS</title>
+    <link rel="shortcut icon" href="{{ asset('img/logo_render.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
@@ -12,27 +13,27 @@
         <!-- Barra lateral -->
         <nav class="sidebar">
             <ul>
-                <li><a href="#" data-target="home"><i class="fas fa-home"></i> Inicio</a></li>
-                <li><a href="#" data-target="projects"><i class="fas fa-folder-open"></i> Proyectos</a></li>
-                <li><a href="#" data-target="services"><i class="fas fa-cogs"></i> Servicios</a></li>
-                <li><a href="#" data-target="about"><i class="fas fa-users"></i> Nosotros</a></li>
-                <li><a href="#" style="padding-left: 2px" data-target="contact"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="#home" data-target="home"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#proyectos" data-target="projects"><i class="fas fa-folder-open"></i> Proyectos</a></li>
+                <li><a href="#servicios" data-target="services"><i class="fas fa-cogs"></i> Servicios</a></li>
+                <li><a href="#about" data-target="about"><i class="fas fa-users"></i> Nosotros</a></li>
+                <li><a href="#contacto" style="padding-left: 2px" data-target="contact"><i class="fas fa-envelope"></i> Contacto</a></li>
             </ul>
         </nav>
 
         <!-- Contenedor de contenido -->
         <div class="content-container">
             <!-- Sección de Inicio -->
-            <div class="section home active">
+            <div class="section home active" id="home">
                 <div class="home-content">
                     <div class="text-container">
                         <h1 class="h1-home">
-                            Hola!, Somos <span class="highlight">Kairos</span>
+                            Bienvenidos a <span class="highlight">SoMoS</span>!
                         </h1>
                         <h2 class="h2-home">
                             Una <span class="highlight">empresa</span> de <span class="highlight">Software</span>
                         </h2>
-                        <p class="p-home">Somos una empresa especializada en desarrollo de software, diseño grafico y desarrollo UX/UI.</p>
+                        <p class="p-home">SoMoS una empresa especializada en desarrollo de software, diseño grafico y desarrollo UX/UI.</p>
                         <div class="button-container">
                             <button class="btn-green" onclick="showAbout()">Sobre Nosotros</button>
                             <button class="btn-green" onclick="showContact()">Contáctanos</button>
@@ -43,28 +44,28 @@
                             <div class="bottom"></div>
                             <div class="left"></div>
                         </div>
-                        <img src="{{ asset('img/logo.jpg') }}" alt="Logo">
+                        <img src="{{ asset('img/logo.png') }}" alt="Logo">
                     </div>
                 </div>
             </div>
 
             <!-- Sección de Proyectos -->
-            <div class="section projects">
+            <div class="section projects" id="proyectos">
                 <div class="projects-content">
                     <h1 class="h1-projects">Proyectos</h1>
                     <div class="projects-grid">
                         <!-- Proyecto 1 -->
                         <div class="project-card" data-project="project1">
                             <i class="fas fa-briefcase"></i>
-                            <h3>Proyecto Kairos</h3>
+                            <h3>Proyecto SoMoS</h3>
                             <p class="project-description">Un sistema avanzado de gestión empresarial.</p>
                             <div class="project-carousel">
                                 <div class="carousel-images">
-                                    <img style="width: auto; height: 265px; position: relative; right: 20px" src="{{ asset('img/Kairos/kairos1.jpg') }}" alt="Proyecto 1 - Imagen 1">
-                                    <img style="width: auto; height: 265px; position: relative; right: 30px" src="{{ asset('img/Kairos/kairos2.jpg') }}" alt="Proyecto 1 - Imagen 2">
-                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/Kairos/kairos3.jpg') }}" alt="Proyecto 1 - Imagen 3">
-                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/Kairos/kairos4.jpg') }}" alt="Proyecto 1 - Imagen 2">
-                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/Kairos/kairos5.png') }}" alt="Proyecto 1 - Imagen 3">
+                                    <img style="width: auto; height: 265px; position: relative; right: 20px" src="{{ asset('img/SoMoS/somos1.jpg') }}" alt="Proyecto 1 - Imagen 1">
+                                    <img style="width: auto; height: 265px; position: relative; right: 30px" src="{{ asset('img/SoMoS/somos2.jpg') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/SoMoS/somos3.jpg') }}" alt="Proyecto 1 - Imagen 3">
+                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/SoMoS/somos4.jpg') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/SoMoS/somos5.png') }}" alt="Proyecto 1 - Imagen 3">
                                 </div>
                                 <button class="prev">&lt;</button>
                                 <button class="next">&gt;</button>
@@ -88,7 +89,7 @@
                         </div>
 
                         <!-- Proyecto 3 -->
-                        <div class="project-card" data-project="project3">
+                        {# <div class="project-card" data-project="project3">
                             <i class="fas fa-mask"></i>
                             <h3>Carnavales Hasenkamp</h3>
                             <p class="project-description">Página Web para la compra de entradas y sillas para el carnaval.</p>
@@ -101,7 +102,7 @@
                                 <button class="prev">&lt;</button>
                                 <button class="next">&gt;</button>
                             </div>
-                        </div>
+                        </div> #}
 
                         <!-- Proyecto 4 -->
                         <div class="project-card" data-project="project4">
@@ -120,7 +121,7 @@
                         </div>
 
                         <!-- Proyecto 5 -->
-                        <div class="project-card" data-project="project5">
+                        {# <div class="project-card" data-project="project5">
                             <i class="fas fa-industry"></i>
                             <h3>Metalúrgica Kisser</h3>
                             <p class="project-description">Página Web para la compra de maquinarias.</p>
@@ -133,7 +134,7 @@
                                 <button class="prev">&lt;</button>
                                 <button class="next">&gt;</button>
                             </div>
-                        </div>
+                        </div> #}
 
                         <!-- Proyecto 6 -->
                         <div class="project-card" data-project="projec6">
@@ -155,7 +156,7 @@
             </div>
 
             <!-- Sección de Servicios -->
-            <div class="section services">
+            <div class="section services" id="servicios">
                 <div class="services-content">
                     <h1 class="h1-servicios">Servicios</h1>
                     <div class="services-grid">
@@ -194,14 +195,13 @@
             </div>
 
             <!-- Sección de Nosotros -->
-            <div class="section about">
+            <div class="section about" id="about">
                 <div class="about-content">
-                    <!-- Subtítulo al lado izquierdo -->
-                    <h3 class="about-subtitle">¿Quiénes Somos?</h3>
+                    <h3 class="about-subtitle">¿Quiénes SoMoS?</h3>
 
                     <!-- Título con texto en blanco y verde -->
                     <h4 class="about-title">
-                        <span class="white">Somos</span>
+                        <span class="white">SoMoS</span>
                         <span class="green">Desarrolladores</span>
                         <span class="white">y llegamos para</span>
                         <span class="green">ayudarte</span>
@@ -209,7 +209,7 @@
 
                     <!-- Párrafo sobre quiénes somos -->
                     <p class="about-description">
-                        Somos un equipo de profesionales apasionados por la tecnología, con más de 2 años de experiencia en el desarrollo de software. Nos especializamos en crear soluciones digitales innovadoras y eficientes para nuestros clientes.
+                        SoMoS un equipo de profesionales apasionados por la tecnología, con más de 2 años de experiencia en el desarrollo de software. Nos especializamos en crear soluciones digitales innovadoras y eficientes para nuestros clientes.
                     </p>
 
                     <!-- Contenedor principal -->
@@ -233,15 +233,15 @@
                             <div class="column">
                                 <div class="data-section">
                                     <h5>Edad</h5>
-                                    <p>22/25 años</p>
+                                    <p>22 años</p>
                                 </div>
                                 <div class="data-section">
                                     <h5>Lenguajes para la web</h5>
                                     <p>Symfony, PHP, CSS y JavaScript</p>
                                 </div>
                                 <div class="data-section" style="position: relative; bottom: 18px">
-                                    <h5>Localidad</h5>
-                                    <p>Santa Fe, Santa Fe, Argentina Hasenkamp, Entre Ríos, Argentina</p>
+                                    <h5>Localidad</h5>Hasenkamp, Entre Ríos, Argentina
+                                    <p>Santa Fe, Santa Fe, Argentina </p>
                                 </div>
                             </div>
                         </div>
@@ -250,15 +250,15 @@
                         <div class="skills-section">
                             <h5>Lenguajes de Programación</h5>
                             <ul class="skills-list">
-                                <li><i class="fab fa-microsoft"></i> C# <div class="progress-bar"><div data-width="80%"></div></div></li>
+                                <li><i class="fab fa-python"></i> Python <div class="progress-bar"><div data-width="50%"></div></div></li>
                                 <li><i class="fab fa-java"></i> Java <div class="progress-bar"><div data-width="70%"></div></div></li>
                                 <li><i class="fab fa-html5"></i> HTML <div class="progress-bar"><div data-width="90%"></div></div></li>
                                 <li><i class="fab fa-css3-alt"></i> CSS <div class="progress-bar"><div data-width="85%"></div></div></li>
                                 <li><i class="fab fa-js"></i> JavaScript <div class="progress-bar"><div data-width="75%"></div></div></li>
-                                <li><i class="fab fa-php"></i> PHP <div class="progress-bar"><div data-width="60%"></div></div></li>
-                                <li><i class="fas fa-database"></i> MySQL <div class="progress-bar"><div data-width="70%"></div></div></li>
-                                <li><i class="fab fa-node-js"></i> Node.js <div class="progress-bar"><div data-width="65%"></div></div></li>
-                                <li><i class="fab fa-symfony"></i> Symfony <div class="progress-bar"><div data-width="50%"></div></div></li>
+                                <li><i class="fab fa-php"></i> PHP <div class="progress-bar"><div data-width="85%"></div></div></li>
+                                <li><i class="fas fa-database"></i> MySQL <div class="progress-bar"><div data-width="90%"></div></div></li>
+                                <li><i class="fab fa-node-js"></i> Node.js <div class="progress-bar"><div data-width="55%"></div></div></li>
+                                <li><i class="fab fa-symfony"></i> Symfony <div class="progress-bar"><div data-width="90%"></div></div></li>
                             </ul>
                         </div>
                     </div>
@@ -266,7 +266,7 @@
             </div>
 
             <!-- Sección de Contacto -->
-            <div class="section contact" style="padding-right: 90px; position: relative; top: 10px" >
+            <div class="section contact" style="padding-right: 90px; position: relative; top: 10px" id="contacto">
                 <h3>Contacto</h3> <!-- Título en la parte superior izquierda -->
                 <div class="contact-content">
                     <!-- Parte Izquierda (30%) -->
@@ -283,14 +283,14 @@
                             <div>
                                 <h4>Localidad</h4>
                                 <p>Santa Fe, Santa Fe, Argentina</p>
-                                <p>Hasenkamp, Entre Ríos, Argentina</p>
+                                {# <p>Hasenkamp, Entre Ríos, Argentina</p> #}
                             </div>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Correo Electrónico</h4>
-                                <p>kairosdev.oficial@gmail.com</p>
+                                <p>somos.env@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -300,17 +300,24 @@
                         <div class="contact-header">
                             <h4>Mandanos un mensaje</h4>
                             <div class="social-links">
-                                <a href="https://www.instagram.com/kairos.env/" target="blank"><i class="fab fa-instagram"></i></a>
-                                <a href="https://www.twitter.com/kairos.env/" target="blank"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/kairos.env/" target="blank"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.instagram.com/somos.env/" target="blank"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.twitter.com/somos.env/" target="blank"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/somos.env/" target="blank"><i class="fab fa-facebook"></i></a>
                             </div>
                         </div>
-                        <form class="contact-form">
-                            <div class="form-row">
-                                <input type="text" placeholder="Nombre" required>
-                                <input type="email" placeholder="Correo" required>
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
                             </div>
-                            <textarea placeholder="Mensaje" rows="5" required></textarea>
+                        {% endfor %}
+
+                        <form method="POST" action="{{ path('app_contacto') }}" class="contact-form">
+                            <div class="form-row">
+                                <input type="text" name="nombre" placeholder="Nombre" required>
+                                <input type="email" name="correo" placeholder="Correo" required>
+                            </div>
+                            <input type="text" name="asunto" placeholder="Asunto" required>
+                            <textarea name="mensaje" placeholder="Mensaje" rows="5" required></textarea>
                             <button type="submit">Enviar</button>
                         </form>
                     </div>
