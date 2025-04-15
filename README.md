@@ -44,4 +44,4 @@ Tu proyecto estará disponible en [http://localhost:8000](http://localhost:8000)
 ## 📬 Contacto
 Si tienes dudas o sugerencias, puedes contactarme en GitHub o por correo electrónico. 
 
-¡Gracias por probar KairosWEB! 🚀
+¡Gracias por probar SoMoSWEB! 🚀
