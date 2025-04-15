@@ -24,7 +24,7 @@
         <!-- Contenedor de contenido -->
         <div class="content-container">
             <!-- Sección de Inicio -->
-            <div class="section home active" id="home">
+            <div class="section home active" id="home" data-target="home">
                 <div class="home-content">
                     <div class="text-container">
                         <h1 class="h1-home">
@@ -50,7 +50,7 @@
             </div>
 
             <!-- Sección de Proyectos -->
-            <div class="section projects" id="proyectos">
+            <div class="section projects" id="proyectos" data-target="projects">
                 <div class="projects-content">
                     <h1 class="h1-projects">Proyectos</h1>
                     <div class="projects-grid">
@@ -61,51 +61,19 @@
                             <p class="project-description">Un sistema avanzado de gestión empresarial.</p>
                             <div class="project-carousel">
                                 <div class="carousel-images">
-                                    <img style="width: auto; height: 265px; position: relative; right: 20px" src="{{ asset('img/SoMoS/somos1.jpg') }}" alt="Proyecto 1 - Imagen 1">
-                                    <img style="width: auto; height: 265px; position: relative; right: 30px" src="{{ asset('img/SoMoS/somos2.jpg') }}" alt="Proyecto 1 - Imagen 2">
-                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/SoMoS/somos3.jpg') }}" alt="Proyecto 1 - Imagen 3">
-                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/SoMoS/somos4.jpg') }}" alt="Proyecto 1 - Imagen 2">
-                                    <img style="width: auto; height: 265px; position: relative; right: 40px" src="{{ asset('img/SoMoS/somos5.png') }}" alt="Proyecto 1 - Imagen 3">
+                                    <img style="width: auto; height: 265px;" src="{{ asset('img/SoMoS/somos1.png') }}" alt="Proyecto 1 - Imagen 1">
+                                    <img style="width: auto; height: 265px;" src="{{ asset('img/SoMoS/somos2.png') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img style="width: auto; height: 265px;" src="{{ asset('img/SoMoS/somos3.png') }}" alt="Proyecto 1 - Imagen 3">
+                                    <img style="width: auto; height: 265px;" src="{{ asset('img/SoMoS/somos4.png') }}" alt="Proyecto 1 - Imagen 2">
+                                    <img style="width: auto; height: 265px;" src="{{ asset('img/SoMoS/somos5.png') }}" alt="Proyecto 1 - Imagen 3">
                                 </div>
                                 <button class="prev">&lt;</button>
                                 <button class="next">&gt;</button>
                             </div>
                         </div>
-
-                        <!-- Proyecto 2 -->
-                        <div class="project-card" data-project="project2">
-                            <i class="fas fa-chart-pie"></i>
-                            <h3>Sistema de Gestión</h3>
-                            <p class="project-description">Software de escritorio para la gestión de ventas.</p>
-                            <div class="project-carousel">
-                                <div class="carousel-images">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 2 - Imagen 1">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 2 - Imagen 2">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 2 - Imagen 3">
-                                </div>
-                                <button class="prev">&lt;</button>
-                                <button class="next">&gt;</button>
-                            </div>
-                        </div>
-
-                        <!-- Proyecto 3 -->
-                        {# <div class="project-card" data-project="project3">
-                            <i class="fas fa-mask"></i>
-                            <h3>Carnavales Hasenkamp</h3>
-                            <p class="project-description">Página Web para la compra de entradas y sillas para el carnaval.</p>
-                            <div class="project-carousel">
-                                <div class="carousel-images">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 3 - Imagen 1">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 3 - Imagen 2">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 3 - Imagen 3">
-                                </div>
-                                <button class="prev">&lt;</button>
-                                <button class="next">&gt;</button>
-                            </div>
-                        </div> #}
 
                         <!-- Proyecto 4 -->
-                        <div class="project-card" data-project="project4">
+                        <div class="project-card" data-project="project2">
                             <i class="fas fa-exclamation-triangle"></i>
                             <h3>Denuncia Canales Clandestinos</h3>
                             <p class="project-description">Un sistema avanzado de gestión de denuncias.</p>
@@ -120,35 +88,18 @@
                             </div>
                         </div>
 
-                        <!-- Proyecto 5 -->
-                        {# <div class="project-card" data-project="project5">
-                            <i class="fas fa-industry"></i>
-                            <h3>Metalúrgica Kisser</h3>
-                            <p class="project-description">Página Web para la compra de maquinarias.</p>
-                            <div class="project-carousel">
-                                <div class="carousel-images">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 5 - Imagen 1">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 5 - Imagen 2">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 5 - Imagen 3">
-                                </div>
-                                <button class="prev">&lt;</button>
-                                <button class="next">&gt;</button>
-                            </div>
-                        </div> #}
-
-                        <!-- Proyecto 6 -->
-                        <div class="project-card" data-project="projec6">
+                        <!-- Proyecto 3 -->
+                        <div class="project-card" data-project="project3">
                             <i class="fas fa-user-tie"></i>
                             <h3>PortFolio</h3>
                             <p class="project-description">Página Web destinada al PortFolio de un estudiante.</p>
                             <div class="project-carousel">
-                                <div class="carousel-images">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 6 - Imagen 1">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 6 - Imagen 2">
-                                    <img src="{{ asset('img/logo.jpg') }}" alt="Proyecto 6 - Imagen 3">
+                                <div class="video-container">
+                                    <video class="project-video" autoplay muted loop playsinline>
+                                        <source src="{{ asset('img/PortFolio/portFolio.webm') }}" type="video/webm">
+                                        Tu navegador no soporta el video WEBM.
+                                    </video>
                                 </div>
-                                <button class="prev">&lt;</button>
-                                <button class="next">&gt;</button>
                             </div>
                         </div>
                     </div>
@@ -156,7 +107,7 @@
             </div>
 
             <!-- Sección de Servicios -->
-            <div class="section services" id="servicios">
+            <div class="section services" id="servicios" data-target="services">
                 <div class="services-content">
                     <h1 class="h1-servicios">Servicios</h1>
                     <div class="services-grid">
@@ -195,7 +146,7 @@
             </div>
 
             <!-- Sección de Nosotros -->
-            <div class="section about" id="about">
+            <div class="section about" id="about" data-target="about">
                 <div class="about-content">
                     <h3 class="about-subtitle">¿Quiénes SoMoS?</h3>
 
@@ -266,7 +217,7 @@
             </div>
 
             <!-- Sección de Contacto -->
-            <div class="section contact" style="padding-right: 90px; position: relative; top: 10px" id="contacto">
+            <div class="section contact" id="contacto" data-target="contact">
                 <h3>Contacto</h3> <!-- Título en la parte superior izquierda -->
                 <div class="contact-content">
                     <!-- Parte Izquierda (30%) -->
@@ -301,7 +252,7 @@
                             <h4>Mandanos un mensaje</h4>
                             <div class="social-links">
                                 <a href="https://www.instagram.com/somos.env/" target="blank"><i class="fab fa-instagram"></i></a>
-                                <a href="https://www.twitter.com/somos.env/" target="blank"><i class="fab fa-twitter"></i></a>
+                                <a href="https://x.com/somos_env" target="blank"><i class="fab fa-twitter"></i></a>
                                 <a href="https://www.facebook.com/somos.env/" target="blank"><i class="fab fa-facebook"></i></a>
                             </div>
                         </div>
@@ -346,16 +297,19 @@
                 link.addEventListener("click", (e) => {
                     e.preventDefault();
 
-                    const target = e.target.getAttribute("data-target");
+                    const linkElement = e.target.closest("a");
+                    const target = linkElement?.getAttribute("data-target");
+
+                    if (!target) return;
 
                     // Oculta todas las secciones
-                    sections.forEach(section => {
-                        section.classList.remove("active");
-                    });
+                    sections.forEach(section => section.classList.remove("active"));
 
                     // Muestra la sección seleccionada
                     const selectedSection = document.querySelector(`.section.${target}`);
-                    selectedSection.classList.add("active");
+                    if (selectedSection) {
+                        selectedSection.classList.add("active");
+                    }
                 });
             });
         });
@@ -425,12 +379,12 @@
                     }
                     activeCard = card;
 
-                    // Guardar la posición original del icono, título y descripción antes de ocultarlos
+                    // Guardar la posición original
                     icon.dataset.originalTransform = icon.style.transform || "translateY(0)";
                     title.dataset.originalTransform = title.style.transform || "translateY(0)";
                     description.dataset.originalTransform = description.style.transform || "translateY(0)";
 
-                    // Ocultar icono, título y descripción
+                    // Ocultar elementos
                     icon.style.display = "none";
                     title.style.display = "none";
                     description.style.opacity = "0";
@@ -440,37 +394,55 @@
                     projectCarousel.style.display = "flex";
                     projectCarousel.classList.add("active");
 
-                    prevButton.style.display = "block";
-                    nextButton.style.display = "block";
-
-                    images[currentIndex].classList.add("active");
+                    // Comportamiento especial para proyecto 3 (video)
+                    if (card.dataset.project === "project3") {
+                        const videoContainer = projectCarousel.querySelector(".video-container");
+                        const video = projectCarousel.querySelector(".project-video");
+                        
+                        videoContainer.style.display = "flex";
+                        video.play().catch(e => console.log("Autoplay prevented:", e));
+                        
+                        // Ocultar botones de navegación
+                        prevButton.style.display = "none";
+                        nextButton.style.display = "none";
+                    } else {
+                        // Comportamiento normal para otros proyectos
+                        prevButton.style.display = "block";
+                        nextButton.style.display = "block";
+                        images[currentIndex].classList.add("active");
+                    }
                 }
 
                 function hideCarousel(card) {
-                    card.querySelector(".project-carousel").style.display = "none";
-                    card.querySelector(".project-carousel").classList.remove("active");
+                    const projectCarousel = card.querySelector(".project-carousel");
+                    projectCarousel.style.display = "none";
+                    projectCarousel.classList.remove("active");
 
+                    // Comportamiento especial para proyecto 3 (video)
+                    if (card.dataset.project === "project3") {
+                        const video = projectCarousel.querySelector(".project-video");
+                        if (video) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                        projectCarousel.querySelector(".video-container").style.display = "none";
+                    } else {
+                        // Comportamiento normal para otros proyectos
+                        card.querySelectorAll(".carousel-images img").forEach(img => img.classList.remove("active"));
+                    }
+
+                    // Resto del código existente...
                     const cardIcon = card.querySelector("i");
                     const cardTitle = card.querySelector("h3");
                     const cardDescription = card.querySelector(".project-description");
 
-                    // Restaurar la visibilidad del icono y el título
                     cardIcon.style.display = "block";
                     cardTitle.style.display = "block";
-
-                    // Restaurar la posición original del icono, título y descripción
                     cardIcon.style.transform = cardIcon.dataset.originalTransform || "translateY(0)";
                     cardTitle.style.transform = cardTitle.dataset.originalTransform || "translateY(0)";
                     cardDescription.style.transform = cardDescription.dataset.originalTransform || "translateY(0)";
-
-                    // Ocultar la descripción nuevamente
                     cardDescription.style.opacity = "1";
                     cardDescription.style.visibility = "visible";
-
-                    card.querySelectorAll(".carousel-images img").forEach(img => img.classList.remove("active"));
-
-                    card.querySelector(".prev").style.display = "none";
-                    card.querySelector(".next").style.display = "none";
                 }
 
                 // Manejar clic en la tarjeta

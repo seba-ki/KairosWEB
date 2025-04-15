@@ -370,7 +370,6 @@ body {
     transform: translateY(-15px);
 }
 
-
 /* Estilos del carrusel */
 .project-carousel {
     display: none; /* Ocultar el carrusel al inicio */
@@ -443,48 +442,100 @@ body {
     display: block !important;
 }
 
+/* Contenedor principal del carrusel - ajustado para video */
+[data-project="project3"] .project-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+[data-project="project3"] .project-carousel.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor del video - ajustado a la card */
+[data-project="project3"] .video-container {
+    width: 400px;
+    height: 290px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px; /* Espacio interno opcional */
+    box-sizing: border-box;
+}
+
+/* Estilos para el video */
+[data-project="project3"] .project-video {
+    width: 400px;
+    height: 290px;
+    object-fit: cover; /* Cambiado de 'cover' a 'contain' para ver todo el video */
+    background-color: #000;
+    max-height: 100%;
+}
+
+/* Ocultar botones de navegación (si existen) */
+[data-project="project3"] .prev,
+[data-project="project3"] .next {
+    display: none !important;
+}
+
 /* Estilos para Servicios */
 .h1-servicios {
     text-align: left;
     color: #00ff88;
-    margin-bottom: 10px; /* Reducido para estar más cerca de los servicios */
-    font-size: 24px; /* Cambia el tamaño de fuente si es necesario */
+    margin-bottom: 10px;
+    font-size: 24px;
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cambiado a 3 columnas */
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
 .service-card {
     background-color: #333;
     color: #e0e0e0;
-    padding: 30px; /* Aumentar el padding */
-    height: 200px; /* Aumentar la altura */
+    padding: 30px;
+    height: 200px;
     border-radius: 10px;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agregar sombra para más profundidad */
-}
-
-.service-card h3 {
-    font-size: 24px; /* Aumentar el tamaño de la fuente del título */
-}
-
-.service-card p {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
     position: relative;
-    bottom: 15px; /* Ajustar la posición del texto */
-    font-size: 18px;
 }
 
 .service-card i {
     font-size: 32px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: #00ff88;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-card h3 {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.service-card p {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    font-size: 16px;
+    margin-top: 5px;
+    transition: opacity 0.3s ease, max-height 0.3s ease, transform 0.3s ease;
+    transform: translateY(40px);
 }
 
 .service-card:hover {
@@ -493,7 +544,18 @@ body {
 }
 
 .service-card:hover i {
-    color: #1a1a1a; /* Cambia el color del icono al hacer hover en la carta */
+    color: #1a1a1a;
+    transform: translateY(0);
+}
+
+.service-card:hover h3 {
+    transform: translateY(0);
+}
+
+.service-card:hover p {
+    opacity: 1;
+    max-height: 100px;
+    transform: translateY(0);
 }
 
 /* Estilos para la sección de Nosotros */
@@ -915,7 +977,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
     }
 
     /* 🔹 SECCIÓN SERVICIOS */
@@ -929,30 +991,30 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 10px;
     }
 
     /* 🔹 SECCIÓN ABOUT */
     .about-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+        padding: 15px;
+        max-height: unset; /* Dejalo crecer en móvil si es necesario */
     }
 
     .about-wrapper {
-        display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         gap: 20px;
+        position: static; /* Eliminamos bottom */
     }
 
     .about-data {
-        display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
+        max-width: 100%;
         gap: 10px;
     }
 
@@ -962,37 +1024,69 @@ body {
 
     .skills-section {
         width: 100%;
-        text-align: center;
+        max-width: 100%;
+        text-align: left;
+        margin-top: 20px;
     }
 
     .skills-list {
         width: 100%;
         max-width: 100%;
+        margin: 0;
+    }
+
+    .about-subtitle {
+        position: static;
+        margin-bottom: 10px;
+    }
+
+    .skills-list li {
+        font-size: 16px;
+    }
+
+    .progress-bar {
+        height: 8px;
     }
 
     /* 🔹 SECCIÓN CONTACTO */
     .contact-content {
-        display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 20px;
     }
 
-    .contact-info {
-        width: 100%;
-    }
-
+    .contact-info,
     .contact-form-wrapper {
         width: 100%;
+        padding: 0;
     }
 
-    .contact-form {
-        width: 100%;
+    .info-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contact-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
 
     .form-row {
         flex-direction: column;
+        gap: 10px;
+    }
+
+    .contact-form {
+        width: 100%;
+        align-items: center;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form button {
+        max-width: 100%;
     }
 }
 
