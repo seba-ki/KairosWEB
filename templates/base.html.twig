@@ -9,6 +9,158 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <style>
+        /* Estructura principal */
+        .envelope-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Contenedor principal - CENTRADO EXACTO */
+        .envelope-container {
+            position: relative;
+            width: 250px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        /* Sobre - POSICIÓN FIJA */
+        .envelope {
+            position: absolute;
+            width: 250px;
+            height: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Solapa - MISMA ANCHURA QUE LA CARTA */
+        .envelope-flap {
+            position: absolute;
+            width: 230px; /* Mismo ancho que la carta */
+            left: 10px; /* Para centrarla con el sobre */
+            height: 140px;
+            background: #f5f5f5;
+            border-radius: 6px 6px 0 0;
+            top: 0;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+            z-index: 2;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+        }
+
+        .envelope-body {
+            position: absolute;
+            width: 250px;
+            height: 140px;
+            background: #f0f0f0;
+            border-radius: 0 0 6px 6px;
+            bottom: 0;
+            z-index: 1;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* CARTA - ALINEACIÓN EXACTA CON LA SOLAPA */
+        .letter {
+            position: absolute;
+            width: 220px; 
+            right: 3px;
+            height: 110px;
+            background: white;
+            border-radius: 4px;
+            top: 0;
+            padding: 12px;
+            opacity: 0;
+            z-index: 3;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .letter-content {
+            font-size: 12px;
+            line-height: 1.4;
+            color: #333;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Mensaje de éxito */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            max-width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10002;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .success-message i {
+            color: #4CAF50;
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .btn-close-modal {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .btn-close-modal:hover {
+            background: #3e8e41;
+            transform: translateY(-2px);
+        }
+    </style>
+
     <div class="container">
         <!-- Barra lateral -->
         <nav class="sidebar">
@@ -256,20 +408,46 @@
                                 <a href="https://www.facebook.com/somos.env/" target="blank"><i class="fab fa-facebook"></i></a>
                             </div>
                         </div>
+
                         {% for message in app.flashes('success') %}
                             <div class="alert alert-success">
                                 {{ message }}
                             </div>
                         {% endfor %}
 
-                        <form method="POST" action="{{ path('app_contacto') }}" class="contact-form">
+                        <!-- Contenedor de la animación del sobre -->
+                        <div class="envelope-modal">
+                            <div class="envelope-overlay"></div>
+                            
+                            <div class="envelope-container">
+                                <!-- Sobre con alineación exacta -->
+                                <div class="envelope">
+                                    <div class="envelope-flap"></div>
+                                    <div class="envelope-body"></div>
+                                </div>
+                                
+                                <!-- Carta - misma posición horizontal que la solapa -->
+                                <div class="letter">
+                                    <div class="letter-content"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Mensaje de éxito -->
+                            <div class="success-message">
+                                <i class="fas fa-check-circle"></i>
+                                <p>¡Mensaje enviado con éxito!</p>
+                                <button class="btn-close-modal" id="cerrarModal">Cerrar</button>
+                            </div>
+                        </div>
+
+                        <form method="POST" action="{{ path('app_contacto') }}" class="contact-form" id="contactForm">
                             <div class="form-row">
                                 <input type="text" name="nombre" placeholder="Nombre" required>
                                 <input type="email" name="correo" placeholder="Correo" required>
                             </div>
                             <input type="text" name="asunto" placeholder="Asunto" required>
                             <textarea name="mensaje" placeholder="Mensaje" rows="5" required></textarea>
-                            <button type="submit">Enviar</button>
+                            <button type="submit" id="submitBtn">Enviar</button>
                         </form>
                     </div>
                 </div>
@@ -278,6 +456,15 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botonCerrar = document.getElementById('cerrarModal');
+            if (botonCerrar) {
+                botonCerrar.addEventListener('click', function() {
+                location.reload();
+                });
+            }
+        });
+
         //HOME 
         document.addEventListener("DOMContentLoaded", () => {
             const frame = document.getElementById("imageFrame");
@@ -492,6 +679,118 @@
 
             // Aplicar el observer al contenedor de la lista de habilidades
             observer.observe(document.querySelector(".skills-list"));
+        });
+
+        //CONTACTO - Animación mejorada
+        document.addEventListener("DOMContentLoaded", () => {
+            const contactForm = document.getElementById("contactForm");
+            const modal = document.querySelector(".envelope-modal");
+            const overlay = document.querySelector(".envelope-overlay");
+            const envelope = document.querySelector(".envelope");
+            const flap = document.querySelector(".envelope-flap");
+            const letter = document.querySelector(".letter");
+            const letterContent = document.querySelector(".letter-content");
+            const successMsg = document.querySelector(".success-message");
+            const closeBtn = document.querySelector(".btn-close-modal");
+
+            if (contactForm) {
+                contactForm.addEventListener("submit", async function(e) {
+                    e.preventDefault();
+                    
+                    if (!contactForm.checkValidity()) {
+                        contactForm.reportValidity();
+                        return;
+                    }
+                    
+                    // Configurar contenido de la carta (primeras 3 líneas)
+                    const message = contactForm.querySelector("[name='mensaje']").value;
+                    const lines = message.split('\n').slice(0, 3);
+                    letterContent.textContent = lines.join(' ') + (lines.length < 3 ? '' : '...');
+                    
+                    // Mostrar modal
+                    modal.style.display = "flex";
+                    document.body.style.overflow = "hidden";
+                    
+                    // 1. Mostrar sobre (0ms)
+                    envelope.style.opacity = "1";
+                    
+                    // 2. Mostrar carta exactamente encima de la solapa (0ms)
+                    letter.style.opacity = "1";
+                    letter.style.transform = "translateY(-110px)"; // 110px arriba del borde superior del sobre
+                    
+                    // 3. Bajar carta hasta la posición inicial (0.5s)
+                    setTimeout(() => {
+                        letter.style.transform = "translateY(0)";
+                        
+                        // 4. Abrir sobre (0.5s después)
+                        setTimeout(() => {
+                            flap.style.transform = "rotateX(180deg)";
+                            
+                            // 5. Meter carta en el sobre (0.8s después)
+                            setTimeout(() => {
+                                letter.style.transform = "translateY(80px)";
+                                letter.style.opacity = "0";
+                                
+                                // 6. Cerrar sobre cuando la carta está dentro (0.8s)
+                                setTimeout(() => {
+                                    flap.style.transform = "rotateX(0deg)";
+                                    
+                                    // 7. Animación de envío (0.5s después)
+                                    setTimeout(() => {
+                                        envelope.style.transform = "translateY(-100px) rotate(-5deg)";
+                                        envelope.style.opacity = "0";
+                                        
+                                        // Enviar formulario
+                                        sendForm();
+                                        
+                                        // 8. Mostrar éxito después de 2s
+                                        setTimeout(() => {
+                                            successMsg.style.display = "flex";
+                                            setTimeout(() => successMsg.style.opacity = "1", 10);
+                                        }, 2000);
+                                        
+                                    }, 500);
+                                }, 800);
+                            }, 800);
+                        }, 500);
+                    }, 500);
+                });
+                
+                async function sendForm() {
+                    try {
+                        const formData = new FormData(contactForm);
+                        await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                }
+                
+                closeBtn.addEventListener("click", resetAnimation);
+                
+                function resetAnimation() {
+                    // Resetear animación
+                    envelope.style.opacity = "0";
+                    envelope.style.transform = "none";
+                    flap.style.transform = "rotateX(0deg)";
+                    letter.style.opacity = "0";
+                    letter.style.transform = "translateY(-110px)";
+                    successMsg.style.opacity = "0";
+                    successMsg.style.display = "none";
+                    
+                    // Ocultar modal
+                    setTimeout(() => {
+                        modal.style.display = "none";
+                        document.body.style.overflow = "auto";
+                        contactForm.reset();
+                    }, 300);
+                }
+            }
         });
     </script>
 </body>

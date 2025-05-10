@@ -16,164 +16,81 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ContactoController extends AbstractController
-{  
+{
     #[Route('/contacto', name: 'app_contacto', methods: ['GET', 'POST'])]
     public function contacto(Request $request, MailerInterface $mailer): Response
     {
         if ($request->isMethod('POST')) {
+            // Verificar si es una petición AJAX
+            $isAjax = $request->isXmlHttpRequest();
+            
             $nombre = $request->request->get('nombre');
             $correo = $request->request->get('correo');
             $asunto = $request->request->get('asunto');
             $mensaje = $request->request->get('mensaje');
 
-            // 1. Email para vos
-            $emailToOwner = (new Email())
-                ->from(new Address($correo, $nombre))
-                ->to('somos.env@gmail.com')
-                ->subject("📥 $asunto")
-                ->html(
-                    '<!DOCTYPE html>
-                    <html lang="es">
-                    <head>
-                        <meta charset="UTF-8">
-                        <style>
-                            body {
-                                background-color: #1a1a1a;
-                                color: #ffffff;
-                                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                                padding: 30px;
-                            }
-                            .card {
-                                max-width: 600px;
-                                margin: auto;
-                                background-color: #2a2a2a;
-                                border-radius: 8px;
-                                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-                                padding: 30px;
-                            }
-                            h2 {
-                                color: #00ff88;
-                                margin-bottom: 20px;
-                            }
-                            table {
-                                width: 100%;
-                            }
-                            td {
-                                padding: 10px 0;
-                                vertical-align: top;
-                            }
-                            .label {
-                                font-weight: bold;
-                                color: #ffffff;
-                                width: 120px;
-                            }
-                            .message {
-                                margin-top: 25px;
-                                padding: 20px;
-                                background-color: #333333;
-                                border-left: 5px solid #00ff88;
-                                white-space: pre-wrap;
-                                color: #ffffff;
-                            }
-                            p, strong {
-                                color: #ffffff;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="card">
-                            <h2>Nuevo mensaje de contacto</h2>
-                            <table>
-                                <tr>
-                                    <td class="label">Nombre:</td>
-                                    <td style="color: #ffffff">' . htmlspecialchars($nombre) . '</td>
-                                </tr>
-                                <tr>
-                                    <td class="label">Correo:</td>
-                                    <td style="color: #ffffff">' . htmlspecialchars($correo) . '</td>
-                                </tr>
-                            </table>
-                            <div class="message">
-                                ' . nl2br(htmlspecialchars($mensaje)) . '
-                            </div>
-                        </div>
-                    </body>
-                    </html>'
-                );
+            try {
+                // 1. Email para el dueño
+                $emailToOwner = (new Email())
+                    ->from(new Address($correo, $nombre))
+                    ->to('somos.env@gmail.com')
+                    ->subject("📥 $asunto")
+                    ->html($this->renderEmailTemplate('owner', $nombre, $correo, $asunto, $mensaje));
 
-            $mailer->send($emailToOwner);
+                $mailer->send($emailToOwner);
 
-            // 📨 2. Email automático al usuario con imagen embebida en el diseño
-            $logoPath = $this->getParameter('kernel.project_dir') . '/public/img/logo_render.png';
-            $logoCid = 'logo_cid';
+                // 2. Email de confirmación al usuario
+                $logoPath = $this->getParameter('kernel.project_dir') . '/public/img/logo_render.png';
+                $logoCid = 'logo_cid';
 
-            $emailToUser = (new Email())
-                ->from(new Address('somos.env@gmail.com', 'SoMoS'))
-                ->to($correo)
-                ->subject('Gracias por contactarnos')
-                ->html(
-                    '<!DOCTYPE html>
-                    <html lang="es">
-                    <head>
-                        <meta charset="UTF-8">
-                        <style>
-                            body {
-                                background-color: #1a1a1a;
-                                color: #ffffff;
-                                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-                                padding: 30px;
-                            }
-                            .container {
-                                max-width: 600px;
-                                margin: auto;
-                                background-color: #2a2a2a;
-                                border-radius: 8px;
-                                padding: 30px;
-                                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-                            }
-                            h1 {
-                                color: #00ff88;
-                            }
-                            p, strong {
-                                color: #ffffff;
-                            }
-                            .footer {
-                                margin-top: 40px;
-                                text-align: center;
-                                font-size: 13px;
-                                color: #cccccc;
-                            }
-                            .logo {
-                                margin-top: 15px;
-                                width: 100px;
-                                opacity: 0.9;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="container">
-                            <h1>¡Gracias por escribirnos!</h1>
-                            <p>Hola <strong>' . htmlspecialchars($nombre, ENT_QUOTES | ENT_HTML5, 'UTF-8') . '</strong>,</p>
-                            <p>Recibimos tu mensaje con el asunto "<strong>' . htmlspecialchars($asunto) . '</strong>".</p>
-                            <p>En breve alguien del equipo de <strong>SoMoS</strong> se estará contactando con vos.</p>
-                            <p>¡Te agradecemos mucho por tu interés!</p>
-                            <div class="footer">
-                                <p>Este es un correo automático, por favor no lo respondas.</p>
-                                <img src="cid:' . $logoCid . '" alt="SoMoS logo" class="logo">
-                            </div>
-                        </div>
-                    </body>
-                    </html>'
-                )
-                ->embedFromPath($logoPath, $logoCid);
+                $emailToUser = (new Email())
+                    ->from(new Address('somos.env@gmail.com', 'SoMoS'))
+                    ->to($correo)
+                    ->subject('Gracias por contactarnos')
+                    ->html($this->renderEmailTemplate('user', $nombre, $correo, $asunto, $mensaje))
+                    ->embedFromPath($logoPath, $logoCid);
 
-            $mailer->send($emailToUser);
+                $mailer->send($emailToUser);
 
-            $this->addFlash('success', 'Tu mensaje fue enviado correctamente. ¡Gracias por escribirnos!');
-            return $this->render('base.html.twig');
+                // Respuesta diferente para AJAX y solicitudes normales
+                if ($isAjax) {
+                    return $this->json([
+                        'status' => 'success',
+                        'message' => 'Tu mensaje fue enviado correctamente. ¡Gracias por escribirnos!'
+                    ]);
+                } else {
+                    $this->addFlash('success', 'Tu mensaje fue enviado correctamente. ¡Gracias por escribirnos!');
+                    return $this->redirectToRoute('app_home');
+                }
+
+            } catch (\Exception $e) {
+                // Manejo de errores
+                if ($isAjax) {
+                    return $this->json([
+                        'status' => 'error',
+                        'message' => 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.'
+                    ], 500);
+                } else {
+                    $this->addFlash('error', 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.');
+                    return $this->redirectToRoute('app_home');
+                }
+            }
         }
 
+        // Para GET requests simplemente renderizamos la página
         return $this->render('base.html.twig');
+    }
+
+    private function renderEmailTemplate(string $type, string $nombre, string $correo, string $asunto, string $mensaje): string
+    {
+        $template = $type === 'owner' ? 'email/owner_email.html.twig' : 'email/user_email.html.twig';
+        
+        return $this->renderView($template, [
+            'nombre' => $nombre,
+            'correo' => $correo,
+            'asunto' => $asunto,
+            'mensaje' => $mensaje
+        ]);
     }
 
     #[Route('/contacto/info', name: 'contacto')]
