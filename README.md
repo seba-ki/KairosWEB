@@ -1,6 +1,6 @@
-# 🌐 KairosWEB
+# 🌐 SoMoS WEB
 
-Bienvenido a **KairosWEB**, la plataforma web de la empresa de software **Kairos**. 
+Bienvenido a **SoMoS WEB**, la plataforma web de la empresa de software **SoMoS**. 
 
 ## 🚀 Tecnologías utilizadas
 - **PHP 8.3**
@@ -11,7 +11,7 @@ Bienvenido a **KairosWEB**, la plataforma web de la empresa de software **Kairos
 ## 📥 Instalación
 
 ### 1️⃣ Requisitos previos
-Antes de instalar KairosWEB, asegúrate de tener instalado:
+Antes de instalar SoMoSWEB, asegúrate de tener instalado:
 - [PHP 8.3](https://www.php.net/downloads)
 - [Composer](https://getcomposer.org/download/)
 - [Symfony CLI](https://symfony.com/download)
@@ -44,4 +44,4 @@ Tu proyecto estará disponible en [http://localhost:8000](http://localhost:8000)
 ## 📬 Contacto
 Si tienes dudas o sugerencias, puedes contactarme en GitHub o por correo electrónico. 
 
-¡Gracias por probar KairosWEB! 🚀
+¡Gracias por probar SoMoSWEB! 🚀
